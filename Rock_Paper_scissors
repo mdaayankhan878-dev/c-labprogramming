@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+
+// Function to get, validate, and return a player's choice
+const char* getChoice(int playerNumber) {
+    char input[20];
+
+    while (1) {
+        printf("Person %d, enter your choice (rock/ROCK, paper/PAPER, scissors/SCISSORS): ", playerNumber);
+        scanf("%19s", input);
+
+        // Check both lowercase and uppercase
+        if (strcmp(input, "rock") == 0 || strcmp(input, "ROCK") == 0) {
+            return "rock";
+        }
+        if (strcmp(input, "paper") == 0 || strcmp(input, "PAPER") == 0) {
+            return "paper";
+        }
+        if (strcmp(input, "scissors") == 0 || strcmp(input, "SCISSORS") == 0) {
+            return "scissors";
+        }
+
+        printf("Invalid choice! Try again.\n");
+    }
+}
+
+int main() {
+    // Save the returned choices into choice1 and choice2
+    const char *choice1 = getChoice(1);
+    const char *choice2 = getChoice(2);
+
+    printf("\nPerson 1 chose: %s\n", choice1);
+    printf("Person 2 chose: %s\n\n", choice2);
+
+    // Compare choice1 and choice2
+    if (strcmp(choice1, choice2) == 0) {
+        printf("It's a tie!\n");
+    }
+    else if ((strcmp(choice1, "rock") == 0 && strcmp(choice2, "scissors") == 0) ||
+             (strcmp(choice1, "paper") == 0 && strcmp(choice2, "rock") == 0) ||
+             (strcmp(choice1, "scissors") == 0 && strcmp(choice2, "paper") == 0)) {
+        printf("Winner is Person 1!\n");
+    }
+    else {
+        printf("Winner is Person 2!\n");
+    }
+
+    return 0;
+}
